@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "express": "npm:express@4.18.2",
+    "supertest": "npm:supertest@6.3.3"
+  }
+}
