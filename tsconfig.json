@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "declaration": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "types": ["node"],
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*",
+  ]
+}
