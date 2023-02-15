@@ -39,7 +39,8 @@ export const installDeps = async (packageManager: PackageManager, nameProject: s
   }
 
   if (packageManager === 'yarn') {
-    await execShellCommand(`yarn --cwd ${nameProject}`)
+    const absolute = path.resolve(`./${nameProject}`);
+    await execShellCommand(`yarn install --cwd ${absolute}`)
   }
 
   if (packageManager === "pnpm") {

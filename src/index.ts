@@ -14,6 +14,7 @@ import color from "picocolors";
 import { setTimeout } from "node:timers/promises";
 import { copyTemplate, installDeps } from './tools/file.js';
 import { PackageManager } from './entities/package';
+import Mascot from './tools/mascot.js';
 
 const showNextSteps = async (isDeno: boolean, dir: string, install: boolean, packageManager: PackageManager) => {
 
@@ -32,9 +33,11 @@ const showNextSteps = async (isDeno: boolean, dir: string, install: boolean, pac
 
 
 async function main() {
-  console.clear();
+  const jay = new Mascot()
+  jay.say(["Hello I'm Jay Fox", "Your new friend to create awesome projects"])
 
-  await setTimeout(700);
+  await setTimeout(3000);
+  console.log(' ')
   intro(`${color.bgCyan(color.black(" create-app "))}`);
 
   const dir = await text({
