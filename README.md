@@ -23,7 +23,7 @@ npx jfox
 * Typescript and Javascript Templates
 * Blazingly Fast
 * Install dependencies optionaly
-* Install dependencies optionaly
+* Frameworks for node and deno supported
 
 ## How to use [:headphones:]
 
