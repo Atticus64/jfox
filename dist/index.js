@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { text, select, confirm, intro, outro, cancel, spinner, isCancel, note, } from "@clack/prompts";
 import color from "picocolors";
 import { setTimeout } from "node:timers/promises";
