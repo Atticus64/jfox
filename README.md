@@ -4,6 +4,8 @@
 
 **Javascript and Typescript Fast Optimized Xtreme script to inicialize backend projects**
 
+<img src="https://i.postimg.cc/HLt4XMP6/jfox.gif" width="800px" alt="preview jfox">
+
 ## Installation 
 
 ```
