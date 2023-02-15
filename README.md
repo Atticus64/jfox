@@ -23,7 +23,7 @@ npx jfox
 * Install dependencies optionaly
 * Install dependencies optionaly
 
-# How to use [:headphones:]
+## How to use [:headphones:]
 
 ```
 jfox
