@@ -2,9 +2,22 @@ import { text, select, confirm, intro, outro, cancel, spinner, isCancel, note, }
 import color from "picocolors";
 import { setTimeout } from "node:timers/promises";
 import { copyTemplate, installDeps } from './tools/file.js';
+import Mascot from './tools/mascot.js';
+const showNextSteps = async (isDeno, dir, install, packageManager) => {
+    if (isDeno) {
+        let nextSteps = `cd ${dir}        \n${install ? '' : `${packageManager} install\n`}deno task dev`;
+        note(nextSteps, 'Next steps.');
+        return;
+    }
+    let nextSteps = `cd ${dir}        \n${install ? '' : `${packageManager} install\n`}${packageManager} run dev`;
+    note(nextSteps, 'Next steps.');
+    await setTimeout(1000);
+};
 async function main() {
-    console.clear();
-    await setTimeout(700);
+    const jay = new Mascot();
+    jay.say(["Hello I'm Jay Fox", "Your new friend to create awesome projects"]);
+    await setTimeout(3000);
+    console.log(' ');
     intro(`${color.bgCyan(color.black(" create-app "))}`);
     const dir = await text({
         message: "Where should we create your project?",
@@ -36,14 +49,17 @@ async function main() {
             { value: "express", label: "Express" },
         ],
     });
-    const packageManager = await select({
-        message: "Pick a Package Manager.",
-        options: [
-            { value: "npm", label: "Npm" },
-            { value: "yarn", label: "Yarn" },
-            { value: "pnpm", label: "Pnpm" },
-        ],
-    });
+    let packageManager;
+    if (projectType === "node") {
+        packageManager = await select({
+            message: "Pick a Package Manager.",
+            options: [
+                { value: "npm", label: "Npm" },
+                { value: "yarn", label: "Yarn" },
+                { value: "pnpm", label: "Pnpm" },
+            ],
+        });
+    }
     if (isCancel(packageManager)) {
         cancel("Operation cancelled.");
         process.exit(0);
@@ -65,16 +81,21 @@ async function main() {
         process.exit(0);
     }
     const lang = haveTypescript ? 'ts' : 'js';
+    const isDeno = projectType === "deno";
+    packageManager = packageManager ?? "npm";
     copyTemplate(framework, lang, projectType, dir);
     if (install) {
         const s = spinner();
-        s.start(`Installing via ${packageManager}`);
-        await installDeps(packageManager, dir);
-        s.stop(`Installed via ${packageManager}`);
+        if (isDeno) {
+            s.start(`Caching deps with deno`);
+        }
+        else {
+            s.start(`Installing via ${packageManager}`);
+        }
+        await installDeps(packageManager, dir, isDeno);
+        s.stop(`Succesfully installed`);
     }
-    let nextSteps = `cd ${dir}        \n${install ? '' : `${packageManager} install\n`}${packageManager} run dev`;
-    note(nextSteps, 'Next steps.');
-    await setTimeout(1000);
+    await showNextSteps(isDeno, dir, install, packageManager);
     outro(`Problems? ${color.underline(color.cyan('https://example.com/issues'))}`);
 }
 main().catch(console.error);

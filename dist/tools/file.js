@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as url from 'url';
 import { exec } from 'child_process';
-import { PackageManager } from '../entities/package.js';
 export function copyTemplate(framework, lang, runtime, folderProject) {
     const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
     const source = path.join(__dirname, `../../templates/${framework}-${lang}-${runtime}`);
@@ -23,14 +22,19 @@ export function execShellCommand(cmd) {
         });
     });
 }
-export const installDeps = async (packageManager, nameProject) => {
-    if (packageManager === PackageManager.npm) {
+export const installDeps = async (packageManager, nameProject, isDeno) => {
+    if (isDeno) {
+        await execShellCommand(`deno cache --reload --import-map ${nameProject}/import_map.json ${nameProject}/src/main.ts`);
+        return;
+    }
+    if (packageManager === "npm") {
         await execShellCommand(`npm i --prefix ${nameProject}`);
     }
-    if (packageManager === PackageManager.yarn) {
-        await execShellCommand(`yarn --cwd ${nameProject}`);
+    if (packageManager === 'yarn') {
+        const absolute = path.resolve(`./${nameProject}`);
+        await execShellCommand(`yarn install --cwd ${absolute}`);
     }
-    if (packageManager === PackageManager.pnpm) {
+    if (packageManager === "pnpm") {
         await execShellCommand(`pnpm i -C ${nameProject}`);
     }
 };

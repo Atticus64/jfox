@@ -1,6 +1,6 @@
 {
   "name": "jfox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Blazingly Fast Npm package to inicialize backend projects. Javascript Fast Optimized Xtreme",
   "type": "module",
   "main": "dist/index.js",
@@ -10,9 +10,6 @@
     "build": "tsc",
     "dev": "ts-node --esm ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "@jona64:registry": "https://npm.pkg.github.com"
   },
   "license": "ISC",
   "dependencies": {
