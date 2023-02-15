@@ -28,17 +28,21 @@ export function execShellCommand(cmd: string) {
   });
 }
 
-export const installDeps = async (packageManager: string, nameProject: string) => {
+export const installDeps = async (packageManager: PackageManager, nameProject: string, isDeno: boolean) => {
+  if (isDeno) {
+    await execShellCommand(`deno cache --reload --import-map ${nameProject}/import_map.json ${nameProject}/src/main.ts`)
+    return
+  }
 
-  if (packageManager === PackageManager.npm) {
+  if (packageManager === "npm") {
     await execShellCommand(`npm i --prefix ${nameProject}`)
   }
 
-  if (packageManager === PackageManager.yarn) {
+  if (packageManager === 'yarn') {
     await execShellCommand(`yarn --cwd ${nameProject}`)
   }
 
-  if (packageManager === PackageManager.pnpm) {
+  if (packageManager === "pnpm") {
     await execShellCommand(`pnpm i -C ${nameProject}`)
   }
 }
