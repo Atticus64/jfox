@@ -18,6 +18,18 @@ npm i -g jfox
 npx jfox
 ```
 
+* With Deno
+
+```sh
+deno run -A --unstable --import-map  https://slug.vercel.app/s/import_map https://denopkg.com/atticus64/jfox@master/deno/main.ts
+```
+
+* With Bun
+
+```
+bunx jfox
+```
+
 ## Features [:fox_face:]
 
 * Typescript and Javascript Templates
@@ -30,3 +42,8 @@ npx jfox
 ```
 jfox
 ```
+
+
+### Todo
+
+- [ ] Add support for bun runtime
