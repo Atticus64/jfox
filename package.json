@@ -1,6 +1,6 @@
 {
   "name": "jfox",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Blazingly Fast Npm package to inicialize backend projects. Javascript Fast Optimized Xtreme",
   "type": "module",
   "main": "dist/index.js",
