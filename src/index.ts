@@ -13,7 +13,8 @@ import {
   note,
 } from "@clack/prompts";
 import color from "picocolors";
-import { setTimeout } from "node:timers/promises";
+import { exit } from "process"
+import { setTimeout } from "timers/promises";
 import { copyTemplate, installDeps } from './tools/file.js';
 import { PackageManager } from './entities/package';
 import Mascot from './tools/mascot.js';
@@ -49,7 +50,7 @@ async function main() {
 
   if (isCancel(dir)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+    exit(0);
   }
 
   const projectType = await select({
@@ -62,7 +63,7 @@ async function main() {
 
   if (isCancel(projectType)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+		exit(1)
   }
 
   const haveTypescript = await confirm({
@@ -92,12 +93,12 @@ async function main() {
 
   if (isCancel(packageManager)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+		exit(1)
   }
 
   if (isCancel(haveTypescript)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+		exit(1)
   }
 
   const install = await confirm({
@@ -107,12 +108,12 @@ async function main() {
 
   if (isCancel(install)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+		exit(1)
   }
 
   if (isCancel(framework)) {
     cancel("Operation cancelled.");
-    process.exit(0);
+		exit(1)
   }
 
   const lang = haveTypescript ? 'ts' : 'js'

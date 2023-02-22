@@ -1,9 +1,8 @@
-import fs from "fs"
 import { stdout } from "process";
-import { createLogUpdate } from "log-update"
-import color from 'picocolors'
+import { createLogUpdate } from "log_update"
+import color from "picocolors"
 
-class Mascot {
+export class Mascot {
   mascot = '';
   log;
   interval: NodeJS.Timer;
@@ -19,7 +18,7 @@ class Mascot {
        \\____\\___\\`
   }
 
-  say(messages: string[]) {
+  async say(messages: string[]) {
 
     let messagesClone: string[], words: string[] | undefined, message: string, wordIndex: number;
 
@@ -61,7 +60,6 @@ class Mascot {
   }
 
   setTalkAnimation(message: string) {
-
 
     this.log(`${color.magenta(this.mascot)} ${color.yellow(message)}`)
 

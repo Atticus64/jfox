@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "sleep": "https://x.nest.land/sleep@1.0.0/mod.ts",
+    "cliffy_prompt": "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts",
+    "process": "https://deno.land/std@0.177.0/node/process.ts",
+    "log_update": "npm:log-update@5.0.1",
+    "picocolors": "npm:picocolors@1.0.0",
+    "std/": "https://deno.land/std@0.95.0/",
+    "spinners": "https://deno.land/x/spinners/mod.ts"
+  }
+}
