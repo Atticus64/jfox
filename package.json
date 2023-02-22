@@ -4,7 +4,10 @@
   "description": "Blazingly Fast Npm package to inicialize backend projects. Javascript Fast Optimized Xtreme",
   "type": "module",
   "main": "dist/index.js",
-  "bin": "dist/index.js",
+  "bin": {
+    "create-jfox": "index.js",
+    "jfox" :"dist/index.js"
+  },
   "scripts": {
     "postinstall": "node dist/index.js",
     "start": "node dist/index.js",
